@@ -25,8 +25,7 @@ export class ProductDashboardComponent implements OnInit, OnDestroy {
   public showCart = false;
 
   constructor(route: ActivatedRoute,
-    private productService: ProductService,
-    private messageService: MessageService) {
+    private productService: ProductService) {
 
     route.data
       .pipe(
@@ -61,8 +60,6 @@ export class ProductDashboardComponent implements OnInit, OnDestroy {
 
     const exist = Enumerable.from(this.cart)
       .firstOrDefault(x => x?._id === product?._id);
-
-    this.messageService.add({ severity: 'success', summary: 'Add To Cart', detail: `'${product?.name}' added to cart!` });
 
     if (!!exist?._id) {
 

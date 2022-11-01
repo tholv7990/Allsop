@@ -1,7 +1,9 @@
 <div class="breadcum">
     <div class="txt-header">Products</div>
-    <button (click)="onShowCart(true)" class="cart" [ngClass]="{'active': !!cart?.length}"><i
-            class="fa fa-shopping-cart"></i></button>
+    <button (click)="onShowCart(true)" class="btn-default">
+        <i class="fa fa-shopping-cart"></i>
+        <span *ngIf="cart?.length" class="count">{{cart?.length}}</span>
+    </button>
 </div>
 <div class="content">
     <div class="categories">
@@ -30,7 +32,6 @@
     </div>
 </div>
 
-<p-toast position="top-left"></p-toast>
 
 <p-dialog visible="true" *ngIf="showCart" [closable]="false">
     <ng-template pTemplate="header">
