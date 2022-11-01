@@ -28,6 +28,9 @@ export interface DiscountEntity {
 export interface DiscountResult {
     drinks: DiscountEntity;
     baking: DiscountEntity;
-    total: DiscountEntity;
+    promo: DiscountEntity;
+    total: number;
+    subTotal: number;
+    discount: number;
 }
 

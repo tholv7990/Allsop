@@ -18,7 +18,7 @@ export class ProductUtility {
             discount: 0
         }
 
-        const totalDiscount: DiscountEntity = {
+        const promoDiscount: DiscountEntity = {
             quantity: 0,
             total: 0,
             discount: 0
@@ -39,27 +39,33 @@ export class ProductUtility {
                     bakingDiscount.total += itemTotal;
                 }
 
-                totalDiscount.total += itemTotal;
+                promoDiscount.total += itemTotal;
 
             });
 
-        if (drinkDiscount.quantity > 10) {
+        if (drinkDiscount.quantity > 10 || drinkDiscount.quantity === 10) {
             drinkDiscount.discount = new Decimal(drinkDiscount.total / 10).toDP(2).toNumber();
         }
 
-        if (bakingDiscount.total > 50) {
+        if (bakingDiscount.total > 50 || bakingDiscount.total === 50) {
             bakingDiscount.discount = 5
         }
 
-        if (applyPromoCode && totalDiscount.total > 100) {
-            totalDiscount.discount = 20;
+        if (applyPromoCode && (promoDiscount.total > 100 || promoDiscount.total === 100)) {
+            promoDiscount.discount = 20;
         }
 
+        const discount = drinkDiscount?.discount + bakingDiscount?.discount + promoDiscount?.discount;
+        const subTotal = promoDiscount.total;
+        const total = promoDiscount.total - discount;
 
         return {
             drinks: drinkDiscount,
             baking: bakingDiscount,
-            total: totalDiscount
+            promo: promoDiscount,
+            discount: discount,
+            total: total,
+            subTotal: subTotal
         }
     }
 }

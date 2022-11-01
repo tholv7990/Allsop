@@ -1,5 +1,6 @@
-<div class="cart">
-    <ng-container *ngIf="!!formArray?.controls?.length; else empty">
+<ng-container *ngIf="!!formArray?.controls?.length; else empty">
+    <div class="cart">
+
         <div class="cart-list">
 
             <div class="cart-list-item" *ngFor="let form of formArray?.controls; let i = index" [formGroup]="form">
@@ -20,68 +21,76 @@
                 <div class="remove" (click)="remove.emit(form?.value?._id)">Remove</div>
             </div>
         </div>
-    </ng-container>
-
-    <div class="cart-summary">
-        <div class="flex-between">
-            <legend>Cart Summary</legend>
-            <span class="txt-primary">{{discount?.total?.total| currency:'GBP'}}</span>
-        </div>
-
-        <div class="cart-summary-coupon">
-            <input class="w-100" type="text" [formControl]="couponForm" placeholder="Promo Code" />
-            <button [disabled]="!couponForm?.value" class="btn-default" (click)="onApplyCoupon()">Apply Coupon</button>
-        </div>
-        <div *ngIf="showError" class="error">Coupon code "{{couponForm?.value}}" cannot currently be added to your cart
-        </div>
-
-        <div class="cart-summary-discount">
 
 
-            <legend>Discount Summary</legend>
-
-
-            <div class="value"><span class="txt-secondary">Drinks:</span>
-                <span *ngIf="discount?.drinks?.quantity > 10; else noDiscount ">10%
-                    off
-                    of({{discount?.drinks?.total |currency:'GBP'}})</span>
+        <div class="cart-summary">
+            <div class="flex-between">
+                <legend>Cart Summary</legend>
+                <span class="txt-primary">{{discount?.total| currency:'GBP'}}</span>
             </div>
 
-            <div class="value"><span class="txt-secondary">Baking/Cooking Ingredients:</span>
-                <span *ngIf="discount?.baking?.discount > 0; else noDiscount ">{{5 |
-                    currency:'GBP'}} off </span>
+            <div class="cart-summary-coupon">
+                <input class="w-100" type="text" [formControl]="couponForm" placeholder="Promo Code" />
+                <button [disabled]="!couponForm?.value" class="btn-default" (click)="onApplyCoupon()">Apply
+                    Coupon</button>
+            </div>
+            <div *ngIf="showError" class="error">Coupon code "{{couponForm?.value}}" cannot currently be added to your
+                cart
             </div>
 
-            <div class="value">
-                <span class="txt-secondary">Apply Promo Code:</span>
-                <span *ngIf="discount?.total?.discount > 0; else noDiscount ">{{20 |currency:'GBP'}} off
-                </span>
+            <div class="cart-summary-discount">
+
+
+                <legend>Discount Summary</legend>
+
+
+                <div class="value"><span class="txt-secondary">Drinks:</span>
+                    <span
+                        *ngIf="discount?.drinks?.quantity > 10 || discount?.drinks?.quantity === 10; else noDiscount ">10%
+                        off
+                        of({{discount?.drinks?.total |currency:'GBP'}})</span>
+                </div>
+
+                <div class="value"><span class="txt-secondary">Baking/Cooking Ingredients:</span>
+                    <span *ngIf="discount?.baking?.discount > 0; else noDiscount ">{{5 |
+                        currency:'GBP'}} off </span>
+                </div>
+
+                <div class="value">
+                    <span class="txt-secondary">Apply Promo Code:</span>
+                    <span *ngIf="discount?.promo?.discount > 0; else noDiscount ">{{20 |currency:'GBP'}} off
+                    </span>
+                </div>
+
             </div>
 
-        </div>
+            <div class="cart-summary-total">
 
-        <div class="cart-summary-total">
+                <legend>Total Summary</legend>
 
-            <legend>Total Summary</legend>
+                <div class="value flex-end txt-large">
+                    <span class="txt-secondary">Discount:</span>
+                    {{discount?.discount|
+                    currency:'GBP'}}
+                </div>
 
-            <div class="value">
-                <span class="txt-secondary">Discount:</span>
-                {{getTotalDiscount() |
-                currency:'GBP'}}
+                <div class="value flex-end txt-large">
+                    <span class="txt-secondary">Sub Total:</span>
+                    {{discount?.subTotal |
+                    currency:'GBP'}}
+                </div>
+
+                <div class="value flex-end txt-large">
+                    <span class="txt-secondary">Total:</span>
+                    {{discount?.total |
+                    currency:'GBP'}}
+                </div>
+
+
             </div>
-
-
-            <div class="value">
-                <span class="txt-secondary">Total:</span>
-                {{discount?.total?.total |
-                currency:'GBP'}}
-            </div>
-
-
         </div>
     </div>
-</div>
-
+</ng-container>
 <ng-template #empty>
     <div class="empty">
         Your cart is empty

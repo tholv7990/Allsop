@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import Enumerable from 'linq';
 import { DiscountResult, Product } from 'src/libs/model';
@@ -8,7 +8,8 @@ import { ProductUtility } from 'src/libs/utils/product.utility';
   selector: 'app-shopping-cart',
   templateUrl: './shopping.cart.component.html',
   styleUrls: ['./shopping.cart.component.less'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShoppingCartComponent implements OnInit, OnChanges {
 
@@ -79,7 +80,4 @@ export class ShoppingCartComponent implements OnInit, OnChanges {
     return product?.price * product?.quantity;
   }
 
-  public getTotalDiscount(): number {
-    return this.discount?.baking?.discount + this.discount?.drinks?.discount + this.discount?.total?.discount;
-  }
 }
