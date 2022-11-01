@@ -1,0 +1,35 @@
+app-product-cart {
+    display: flex;
+
+    border: 1px solid #eaeaea;
+
+    &:hover {
+        border: 1px solid #ffc107;
+
+        .left {
+
+            border-right: 1px solid #ffc107;
+
+        }
+    }
+
+    .left,
+    .right {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .left {
+        flex: 1;
+        border-right: 1px solid #eaeaea;
+    }
+
+    .right {
+        width: 180px;
+    }
+
+
+
+}

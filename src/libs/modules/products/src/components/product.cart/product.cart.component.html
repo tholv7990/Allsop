@@ -1,0 +1,16 @@
+<div class="left">
+    <div>{{product?.name}}</div>
+    <div class="txt-secondary txt-xs">{{product?.description}}</div>
+</div>
+<div class="right">
+    <div class="txt-secondary txt-xs"> Availability:
+        <span *ngIf="product?.quantity > 0; else soldOut" class="txt-success">In
+            Stock
+        </span>
+    </div>
+    <div>{{product?.price | currency:'GBP'}}</div>
+
+    <button class="btn-default" (click)="onAddToCart()" *ngIf="product?.quantity > 0">Add to cart</button>
+</div>
+
+<ng-template #soldOut>Sold Out</ng-template>

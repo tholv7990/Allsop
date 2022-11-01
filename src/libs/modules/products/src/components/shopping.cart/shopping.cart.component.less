@@ -1,0 +1,110 @@
+app-shopping-cart {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    overflow-y: hidden;
+
+    .fa-trash {
+        color: red !important;
+    }
+
+    .side-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cart {
+
+        display: flex;
+        gap: 10px;
+        height: 100%;
+
+        .cart-list {
+            flex: 1;
+            overflow-y: auto;
+
+            &-item {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #eaeaea;
+                margin-bottom: 10px;
+                border-radius: 5px;
+
+                .value {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+
+                .remove {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .cart-summary {
+            width: 420px;
+            padding: 10px;
+            background-color: #eaeaea;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .error {
+                font-size: 12px !important;
+            }
+
+            .value {
+                display: flex;
+                align-items: center;
+                font-size: 13px;
+                color: black;
+
+            }
+
+
+            &-coupon {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .btn-default {
+                    width: 170px;
+                    height: 30px;
+                }
+            }
+
+            &-discount {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+
+            }
+
+            &-total {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+            }
+
+
+
+
+        }
+    }
+
+
+
+
+}
