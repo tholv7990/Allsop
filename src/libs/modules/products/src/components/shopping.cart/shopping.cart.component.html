@@ -34,7 +34,8 @@
                 <button [disabled]="!couponForm?.value" class="btn-default" (click)="onApplyCoupon()">Apply
                     Coupon</button>
             </div>
-            <div *ngIf="showError" class="error">Coupon code "{{couponForm?.value}}" cannot currently be added to your
+            <div *ngIf="showError && !!couponForm?.value" class="error">Coupon code "{{couponForm?.value}}" cannot
+                currently be added to your
                 cart
             </div>
 
